@@ -1,0 +1,12 @@
+first_name,last_name,date_of_birth,organization,username,password,role,clinician name,department,vip,sas,tb,maze,facial expression,eyetracking
+Dr,Haque,fvwegs,yurr,dr.haque,asd,physician,,,False,False,False,False,False,False
+dummy,dum,rgewgtrw,yurr,dumdum,asd,patient,,,False,False,False,False,False,False
+test,dummy,dqwqfew,yurr,test1,asd,physician,,,False,False,False,False,False,False
+test2,test2,2ewd3rfgh,all,dummy2,asd,patient,,,False,False,False,False,False,False
+David,Mclain,00/00/00,esmetrics,dmclain,asd,physician,,,False,False,False,False,False,False
+Braulio,Santana,00/00/00,esmetrics,bsantana,asd,patient,David Mclain,,False,False,False,False,False,False
+Darren,Guzman,00/00/00,esmetrics,dguzman,asd,patient,David Mclain,,False,False,False,False,False,False
+Cameron,Villone,00/00/00,esmetrics,cvillone,asd,patient,David Mclain,,False,False,False,False,False,False
+Cara,Guernsey,00/00/00,esmetrics,cguernsey,asd,patient,David Mclain,,False,False,False,False,False,False
+Jarrett,Bailey,00/00/00,esmetrics,jbailey,asd,patient,David Mclain,,False,False,False,False,False,False
+Maahin,Haque,00/00/00,esmetrics,mhaque,asd,patient,David Mclain,,False,False,False,False,False,False
