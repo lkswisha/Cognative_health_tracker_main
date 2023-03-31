@@ -2,11 +2,11 @@ import csv
 import pandas as pd
 import os
 import sys
+from datetime import datetime
 
-def mouse_function():
+def mouse_location():
     print("Mouse location during Test")
-    print(os.path.join(sys.path[0], "my_file.txt"))
-    #print(pyautogui.position())
-    '''Time.sleep makes the whole test glitch'''
+    a=datetime.now().strftime("%d_%m_%Y_%H_%M_%S") + ".csv"
+    pd.read_csv(os.path.join(sys.path[0], "heatMap", a ))
 
-mouse_function()
+mouse_location()

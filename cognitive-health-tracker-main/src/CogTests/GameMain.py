@@ -143,7 +143,7 @@ class SaccadeTest:
                      #changed 3rd location to not zero so its not on the edge of the monitor
                      [gv.SCREEN_WIDTH * 0.6, gv.SCREEN_HEIGHT * 0.3, gv.SCREEN_WIDTH * 0.2, gv.SCREEN_HEIGHT * 0.5],
                      [gv.SCREEN_WIDTH * 0.6, gv.SCREEN_HEIGHT * 0.5, gv.SCREEN_WIDTH * 0.2, gv.SCREEN_HEIGHT * 0.3]]  # #| - / \
-        # positions_f = [[200, 300], [100, 200], [100, 250], [100, 150]]  # #| - / \ opposite coords as positions
+        # positions_f = [[200, 300], [0, 200], [100, 250], [100, 150]]  # #| - / \ opposite coords as positions
         cursor = Cursor.Cursor()
         static = Box.Box()
         continueBox = Box.Box()
