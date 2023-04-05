@@ -5,8 +5,10 @@ import sys
 from datetime import datetime
 
 def mouse_location():
-    print("Mouse location during Test")
+    mousedata = [datetime.now().strftime("%H_%M_%S"),pyautogui.position()]
     a=datetime.now().strftime("%d_%m_%Y_%H_%M_%S") + ".csv"
-    pd.read_csv(os.path.join(sys.path[0], "heatMap", a ))
+    with open( a, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(mousedata)
 
 mouse_location()
