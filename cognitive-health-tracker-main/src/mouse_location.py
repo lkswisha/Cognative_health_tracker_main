@@ -12,5 +12,5 @@ def mouse_location():
     with open( a, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(mousedata)
-
+#comment
 mouse_location()

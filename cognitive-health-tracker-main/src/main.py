@@ -711,6 +711,7 @@ class MainWindow(QMainWindow):
     "Function to open the Saccade test in the test practice page"
     def sasTest(self):
         saccade = GameMain.SaccadeTest("clinician")
+
         saccade.Saccade()
 
     "Function to open the Trailblazer test in the test practice page"
