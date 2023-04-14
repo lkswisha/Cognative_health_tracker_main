@@ -73,6 +73,7 @@ class TrailBlazerTest:
         self.total_time = 0
         self.frame_counter = 0
         self.current_pos = pyautogui.position()
+        self.mouse_location = []
 
     def setTotalTime(self,time):
         self.total_time = time
@@ -83,8 +84,14 @@ class TrailBlazerTest:
     def setNumOfIncorrect(self,incorrect):
         self.num_of_incorrect = incorrect
 
+    def setMouseLocation(self, m_l):
+        self.mouse_location = m_l
+
     def getNumOfIncorrect(self):
         return self.num_of_incorrect
+
+    def getMouseLocation(self):
+        return self.mouse_location
 
     """
     Game Logic
@@ -224,9 +231,10 @@ class TrailBlazerTest:
             self.eye_tracker.find_eyetrackers()
             self.eye_tracker.start_gaze_data(self.gaze_data_callback)
 
+        mouse_location = []
         running = True
         while running:
-
+            mouse_location.append(pyautogui.position())
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
@@ -326,6 +334,7 @@ class TrailBlazerTest:
                 initial_hold_time = 0
                 cursor.surf.fill(gv.black)
 
+        self.setMouseLocation(mouse_location)
         self.setNumOfIncorrect(incorrect)
         self.setTotalTime(time_elapsed)
         pygame.quit()

@@ -1,5 +1,7 @@
 #Making an edit
 
+from datetime import datetime
+import canvas
 import pandas as pd
 import sys, os
 import platform
@@ -317,6 +319,7 @@ class MainWindow(QMainWindow):
             results = []
             x = []
             y = []
+
             with open(self.mainWindow.treeWidget_2.currentItem().text(2) + '_sas.csv', 'r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 next(reader)
@@ -1064,6 +1067,15 @@ class MainWindowPatient(QMainWindow):
             3] == "False":
             self.isItRunning = False
         self.tests[2] = "False"
+
+        with open(self.user + '_tb_mouse.csv', 'a') as patientCsv1:
+            patientCsv1.seek(0)
+            writer = csv.DictWriter(patientCsv,
+                                    fieldnames=['Time', 'Mouse Coordinate'],
+                                    lineterminator='\n')
+            writer.writerow(
+                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': tb.getMouseLocation()})
+
         with open(self.user + '_tb.csv', 'a') as patientCsv:
             patientCsv.seek(0)
             writer = csv.DictWriter(patientCsv,
