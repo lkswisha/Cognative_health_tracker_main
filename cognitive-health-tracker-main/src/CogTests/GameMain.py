@@ -75,8 +75,16 @@ class SaccadeTest:
         self.eye_tracker = None
         self.frame_counter = 0
         self.current_pos = pyautogui.position()
+        self.mouse_location = []
 
     # # Exposeses results to other functions
+
+    def setMouseLocation(self, m_l):
+        self.mouse_location = m_l
+
+    def getMouseLocation(self):
+        return self.mouse_location
+
     def getResults(self):
         return self.results
 
@@ -195,9 +203,10 @@ class SaccadeTest:
             self.eye_tracker.find_eyetrackers()
             self.eye_tracker.start_gaze_data(self.gaze_data_callback)
 
+        mouse_location = []
         # # main game logic loop
         while run:
-            mouse_function()
+            mouse_location.append(str(pyautogui.position()).replace("Point", "").replace("x=", "").replace(" y=", ""))
             # # end game engine if quit
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -416,6 +425,7 @@ class SaccadeTest:
                     self.eye_tracker.stop_gaze_data()  # Unsubscribe from capturing gaze data
             pygame.display.flip()
 
+        self.setMouseLocation(mouse_location)
         # end of game functionality
         pygame.quit()
         #write_to_CSV(score_list)

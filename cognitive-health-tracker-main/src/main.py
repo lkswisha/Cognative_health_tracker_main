@@ -932,6 +932,15 @@ class MainWindowPatient(QMainWindow):
             3] == "False":
             self.isItRunning = False
         self.tests[1] = "False"
+
+        with open(self.user + '_sas_mouse.csv', 'a') as patientCsv1:
+            patientCsv1.seek(0)
+            writer = csv.DictWriter(patientCsv1,
+                                    fieldnames=['Time', 'Mouse Coordinate'],
+                                    lineterminator='\n')
+            writer.writerow(
+                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': saccade.getMouseLocation()})
+
         with open(self.user + '_sas.csv', 'a') as patientCsv:
             patientCsv.seek(0)
             writer = csv.DictWriter(patientCsv,
@@ -975,15 +984,15 @@ class MainWindowPatient(QMainWindow):
         ]
         pdf = canvas.Canvas(window.getUser() + "-sas.pdf")
 
-        text = pdf.beginText(40, 680)
-        pdf.setFont("Helvetica", 16)
-        for line in textLines:
-            text.textLine(line)
+#        text = pdf.beginText(40, 680)
+#        pdf.setFont("Helvetica", 16)
+#        for line in textLines:
+#            text.textLine(line)
 
-        pdf.drawText(text)
+#        pdf.drawText(text)
 
-        pdf.save()
-        self.checkTests()
+#        pdf.save()
+#        self.checkTests()
 
     "Function that runs VIP and outputs out a result pdf"
     def vipRunning(self):
@@ -1007,6 +1016,15 @@ class MainWindowPatient(QMainWindow):
             3] == "False":
             self.isItRunning = False
         self.tests[0] = "False"
+
+        with open(self.user + '_vip_mouse.csv', 'a') as patientCsv1:
+            patientCsv1.seek(0)
+            writer = csv.DictWriter(patientCsv1,
+                                    fieldnames=['Time', 'Mouse Coordinate'],
+                                    lineterminator='\n')
+            writer.writerow(
+                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': vip.getMouseLocation()})
+
         with open(self.user + '_vip.csv', 'a') as patientCsv:
             patientCsv.seek(0)
             writer = csv.DictWriter(patientCsv,
@@ -1040,16 +1058,16 @@ class MainWindowPatient(QMainWindow):
             ]
             pdf = canvas.Canvas(window.getUser() + "-vip.pdf")
 
-            text = pdf.beginText(40, 680)
-            pdf.setFont("Helvetica", 16)
-            for line in textLines:
-                text.textLine(line)
+#            text = pdf.beginText(40, 680)
+#            pdf.setFont("Helvetica", 16)
+#            for line in textLines:
+#                text.textLine(line)
 
-            pdf.drawText(text)
+#            pdf.drawText(text)
 
-            pdf.save()
-        vip.setRunning('False')
-        self.checkTests()
+#            pdf.save()
+#        vip.setRunning('False')
+#        self.checkTests()
 
     "Function that runs Trailblazer and outputs out a result pdf"
     def tbRunning(self):
@@ -1068,13 +1086,12 @@ class MainWindowPatient(QMainWindow):
             self.isItRunning = False
         self.tests[2] = "False"
 
-        with open(self.user + '_tb_mouse.csv', 'a') as patientCsv1:
+        with open(self.user + '_tb_mouse.csv', 'w', newline='') as patientCsv1:
             patientCsv1.seek(0)
-            writer = csv.DictWriter(patientCsv1,
-                                    fieldnames=['Time', 'Mouse Coordinate'],
-                                    lineterminator='\n')
-            writer.writerow(
-                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': tb.getMouseLocation()})
+            writer = csv.writer(patientCsv1)
+            writer.writerow(["",datetime.now().strftime("%d_%m_%Y_%H_%M_%S")])
+            for i in length(tb.getMouseLocation()):
+                writer.writerow(i)
 
         with open(self.user + '_tb.csv', 'a') as patientCsv:
             patientCsv.seek(0)

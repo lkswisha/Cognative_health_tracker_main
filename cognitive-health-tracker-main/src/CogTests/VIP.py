@@ -25,6 +25,7 @@ class VipTest:
         self.current_pos = pyautogui.position()
         self.eye_tracker = None
         self.eye_tracking = eye_tracking
+        self.mouse_location = []
 
     def getRunning(self):
         return self.running
@@ -40,6 +41,12 @@ class VipTest:
 
     def getLowerBody(self):
         return self.lowerBody
+
+    def setMouseLocation(self, m_l):
+        self.mouse_location = m_l
+
+    def getMouseLocation(self):
+        return self.mouse_location
 
     def gaze_data_callback(self, gaze_data):
         self.frame_counter += 1
@@ -230,9 +237,11 @@ class VipTest:
         change_rounds = True
         erase = 0
 
+        mouse_location = []
         # game logic loop
         run = True
         while run:
+            mouse_location.append(str(pyautogui.position()).replace("Point", "").replace("x=", "").replace(" y=", ""))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
@@ -462,6 +471,7 @@ class VipTest:
             #     roundCounter=0
             pygame.display.flip()
 
+        self.setMouseLocation(mouse_location)
         if self.eye_tracking and self.eye_tracker is not None:
             self.eye_tracker.stop_gaze_data()  # Unsubscribe from capturing gaze data
         pygame.quit()

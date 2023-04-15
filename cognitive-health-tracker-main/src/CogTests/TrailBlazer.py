@@ -234,8 +234,7 @@ class TrailBlazerTest:
         mouse_location = []
         running = True
         while running:
-            mouse_location.append(pyautogui.position().replace("Point","").replace("x=","").replace(" y=",""))
-            print(mouse_location[-1])
+            mouse_location.append(str(pyautogui.position()).replace("Point","").replace("x=","").replace(" y=",""))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
