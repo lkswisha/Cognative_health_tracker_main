@@ -933,13 +933,14 @@ class MainWindowPatient(QMainWindow):
             self.isItRunning = False
         self.tests[1] = "False"
 
-        with open(self.user + '_sas_mouse.csv', 'a') as patientCsv1:
+        with open(self.user + '_vip_mouse.csv', 'a') as patientCsv1:
             patientCsv1.seek(0)
             writer = csv.DictWriter(patientCsv1,
                                     fieldnames=['Time', 'Mouse Coordinate'],
                                     lineterminator='\n')
-            writer.writerow(
-                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': saccade.getMouseLocation()})
+            writer.writerow({'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S")})
+            for i in vip.getMouseLocation():
+                writer.writerow({'Mouse Coordinate': i})
 
         with open(self.user + '_sas.csv', 'a') as patientCsv:
             patientCsv.seek(0)
@@ -1022,8 +1023,9 @@ class MainWindowPatient(QMainWindow):
             writer = csv.DictWriter(patientCsv1,
                                     fieldnames=['Time', 'Mouse Coordinate'],
                                     lineterminator='\n')
-            writer.writerow(
-                {'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S"), 'Mouse Coordinate': vip.getMouseLocation()})
+            writer.writerow({'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S")})
+            for i in vip.getMouseLocation():
+                writer.writerow({'Mouse Coordinate': i})
 
         with open(self.user + '_vip.csv', 'a') as patientCsv:
             patientCsv.seek(0)
@@ -1086,12 +1088,14 @@ class MainWindowPatient(QMainWindow):
             self.isItRunning = False
         self.tests[2] = "False"
 
-        with open(self.user + '_tb_mouse.csv', 'w', newline='') as patientCsv1:
+        with open(self.user + '_tb_mouse.csv', 'a') as patientCsv1:
             patientCsv1.seek(0)
-            writer = csv.writer(patientCsv1)
-            writer.writerow(["",datetime.now().strftime("%d_%m_%Y_%H_%M_%S")])
-            for i in length(tb.getMouseLocation()):
-                writer.writerow(i)
+            writer = csv.DictWriter(patientCsv1,
+                                    fieldnames=['Time', 'Mouse Coordinate'],
+                                    lineterminator='\n')
+            writer.writerow({'Time': datetime.now().strftime("%d_%m_%Y_%H_%M_%S")})
+            for i in tb.getMouseLocation():
+                writer.writerow({'Mouse Coordinate': i})
 
         with open(self.user + '_tb.csv', 'a') as patientCsv:
             patientCsv.seek(0)
