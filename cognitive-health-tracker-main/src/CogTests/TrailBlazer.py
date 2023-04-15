@@ -234,7 +234,8 @@ class TrailBlazerTest:
         mouse_location = []
         running = True
         while running:
-            mouse_location.append(pyautogui.position())
+            mouse_location.append(pyautogui.position().replace("Point","").replace("x=","").replace(" y=",""))
+            print(mouse_location[-1])
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
@@ -276,7 +277,7 @@ class TrailBlazerTest:
             #timer = threading.Timer(0.5,mouse_function())
             #timer.start()
             #input()
-            mouse_function()
+            #mouse_function()
 
             # Update the player sprite based on mouse
             if self.eye_tracking:

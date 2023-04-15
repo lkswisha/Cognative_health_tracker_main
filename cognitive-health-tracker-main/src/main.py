@@ -1070,7 +1070,7 @@ class MainWindowPatient(QMainWindow):
 
         with open(self.user + '_tb_mouse.csv', 'a') as patientCsv1:
             patientCsv1.seek(0)
-            writer = csv.DictWriter(patientCsv,
+            writer = csv.DictWriter(patientCsv1,
                                     fieldnames=['Time', 'Mouse Coordinate'],
                                     lineterminator='\n')
             writer.writerow(
@@ -1107,15 +1107,15 @@ class MainWindowPatient(QMainWindow):
         ]
         pdf = canvas.Canvas(window.getUser() + "-tb.pdf")
 
-        text = pdf.beginText(40, 680)
-        pdf.setFont("Helvetica", 16)
-        for line in textLines:
-            text.textLine(line)
+#        text = pdf.beginText(40, 680)
+#        pdf.setFont("Helvetica", 16)
+#        for line in textLines:
+#            text.textLine(line)
 
-        pdf.drawText(text)
+#        pdf.drawText(text)
 
-        pdf.save()
-        self.checkTests()
+#        pdf.save()
+#        self.checkTests()
 
 
     "Checks which tests are enabled and if no tests are enabled it will go to the no tests enabled window"
